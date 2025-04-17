@@ -207,7 +207,6 @@ for message in st.session_state.memory.buffer:
 if user_input := st.chat_input("What BU course questions can I help with?"):
     
     # Prompt the user for a question
-    #question = prompt ##???????????????? how to reconcile this? with user input below ?????????????????? 
 
     # Retrieve top matching chunks from FAISS store
     top_matching_chunks = st.session_state.faiss_store.similarity_search_with_score(user_input, k=number_of_top_matches)
@@ -229,7 +228,6 @@ if user_input := st.chat_input("What BU course questions can I help with?"):
     st.session_state.memory.output_key = "output"
 
     # Generate a response using the OpenAI API.
-    ## ??????? do we still need this given response line above ???????????
     with st.spinner('Thinking...'):
         response = st.session_state.agent_executor.invoke({"input": user_input, "context": combined_context})
 
